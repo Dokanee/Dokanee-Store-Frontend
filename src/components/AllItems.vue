@@ -22,15 +22,16 @@
                               <v-col
                                   v-for="item in props.items"
                                   :key="item.productName"
-                                  cols="16"
-                                  sm="6"
-                                  md="3"
+                                  cols="6"
+                                  sm="4"
+                                  md="2"
                                   lg="3"
                               >
                                   <v-hover
                                     v-slot="{ hover }"
                                   >
-                                  <v-card @click="addToCart(item.imageLink,item.productName,item.sellPrice)" class="item-selection ma-0" :elevation="hover ? 3 : 0" style="cursor:pointer" flat>
+                                  <v-card class="item-selection ma-0" :elevation="hover ? 3 : 0" style="cursor:pointer" flat>
+                                  <v-container v-ripple @click="addToCart(item.imageLink,item.productName,item.sellPrice)">
                                       <v-img
                                     contain
                                       class="white--text"
@@ -50,7 +51,7 @@
                                       </v-container>
                                     </v-img>
                                     <v-card-title style="height:60px;font-size:14px;letter-spacing: 1px;line-height: normal;">
-                                    <div class="ma-2">
+                                    <div align="center" justify="center" class="ma-0">
                                         {{item.productName}}
                                     </div>
                                   </v-card-title>  
@@ -70,10 +71,11 @@
                                             &#2547; {{ item.sellPrice }}
                                           </v-chip>
                                       </v-list-item-content>
-                                      </v-card-content>        
+                                      </v-card-content>
+                                  </v-container>        
                                     <v-divider></v-divider>
-                                    <v-card-actions class="ma-0 pa-0">
-                                      <v-btn large round depressed :color="color" class="mx-auto" @click="colchange">ADD TO CART</v-btn>
+                                    <v-card-actions :color="color"  class="ma-0 pa-0">
+                                      <v-btn color="grey lighten-2" large round depressed class="mx-auto" @click="colchange">ADD TO CART</v-btn>
                                       
                                     </v-card-actions>
                                   </v-card>
@@ -102,7 +104,7 @@ data () {
         sortDesc: false,
         page: 1,
         color:"grey lighten-2",
-        itemsPerPage: 8,
+        itemsPerPage: 10,
         sortBy: 'name',
         keys: [
           'imageLink',
@@ -161,6 +163,35 @@ data () {
             inStock: true,
           },
           {
+            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
+            productName:'Rin Power white Power 2x',
+            sellPrice: 230,
+            inStock: true,
+          },
+          {
+            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
+            productName:'Rin Power white Power 2x',
+            sellPrice: 230,
+            inStock: true,
+          },
+          {
+            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
+            productName:'Rin Power white Power 2x',
+            sellPrice: 230,
+            inStock: true,
+          },
+          {
+            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
+            productName:'Rin Power white Power 2x',
+            sellPrice: 230,
+            inStock: true,
+          },
+          {
+            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
+            productName:'Rin Power white Power 2x',
+            sellPrice: 230,
+            inStock: true,
+          },{
             imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
             productName:'Rin Power white Power 2x',
             sellPrice: 230,

@@ -3,12 +3,12 @@
   style="background-color:#F7F7F7"
     class="mx-auto"
     elevation="0"
-    max-width="99%"
+    max-width="100%"
   >
     <v-slide-group
       v-model="model"
       class="pt-3 pa-2"
-      multiple
+      center-active
       show-arrows
     >
       <v-slide-item
@@ -33,7 +33,6 @@
                 v-if="active"
                 color="white"
                 size="48"
-                v-text="'mdi-close-circle-outline'"
               ></v-icon>
             </v-scale-transition>
           </v-row>

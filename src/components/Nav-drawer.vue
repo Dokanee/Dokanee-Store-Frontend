@@ -8,7 +8,9 @@
             <v-list-item-title>Anika Tabassum</v-list-item-title>
             <v-list-item-subtitle>Store Owner</v-list-item-subtitle>
           </v-list-item-content>
-            <v-icon title="About" class="infoo" size="20">mdi-information-outline</v-icon>
+          <v-btn elevation="1" icon fev>
+              <v-icon title="About" size="25">mdi-information-outline</v-icon>
+          </v-btn>
         </v-list-item>
 
       <v-divider></v-divider>
@@ -27,12 +29,13 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-    <v-footer color="#E7E7E7" padless>
+    <div class="mb-4">.</div>
+    <v-footer absolute color="#E7E7E7" padless>
     <v-col
       class="text-center"
       cols="12"
     >
-    <span style="font-size:12px">{{ new Date().getFullYear() }} &copy; Dokanee.com.bd</span>
+    <span style="font-size:13px"><strong>Build With <span style="color:#00AC9C;" href="https://dokanee.com.bd">Dokanee.com.bd</span></strong></span>
     </v-col>
   </v-footer>
   </div>

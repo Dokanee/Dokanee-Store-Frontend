@@ -14,8 +14,22 @@
         </v-list-item>
 
       <v-divider></v-divider>
+
+      <v-expansion-panels hover accordion>
+        <v-expansion-panel
+           v-for="item in items"
+          :key="item.title"
+        >
+          <v-expansion-panel-header outline-color="red" class="py-0 my-0" expand-icon="mdi-menu-down">
+           <span style="font-size:14px" class="text-truncate"><v-icon class="mr-4" left size="20">{{ item.icon }}</v-icon>{{ item.title }}</span>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content class="pl-8">
+            <v-text link style="font-size:14px">No Sub Category Found!</v-text>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
       
-      <v-list dense>
+      <!-- <v-list dense>
         <v-list-item
           v-for="item in items"
           :key="item.title"
@@ -28,7 +42,7 @@
             <v-list-item-title style="font-size:14px">{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-      </v-list>
+      </v-list> -->
     <div class="mb-4">.</div>
     <v-footer absolute color="#E7E7E7" padless>
     <v-col
@@ -78,5 +92,8 @@
 .infoo:hover {
   border:1px solid gray;
   cursor: pointer;
+}
+.Catagories {
+  text-align: left;
 }
 </style>

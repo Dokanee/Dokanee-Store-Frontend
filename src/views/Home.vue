@@ -12,7 +12,7 @@
     
     </v-navigation-drawer>
 
-    <v-app-bar height="80" app clipped-left>
+    <v-app-bar color="white" height="80" app clipped-left>
         <v-app-bar-nav-icon class="hidden-lg-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
         <span class="large title ml-3 mr-2"><span style="color:#00AC9C"><strong>Dokanee&nbsp;</strong></span><span class="font-weight-light">Store</span></span>
        <v-spacer></v-spacer>

@@ -3,8 +3,8 @@
     <v-container fluid>
       <transition name="fade">
       <v-row class="mb-12">
-                  <v-card style="background-color:#F7F7F7" flat width="100%" class="mx-auto">
-                    <v-card-title class="title">
+                  <v-card dense style="background-color:#F7F7F7" flat width="100%" class="mx-auto">
+                    <v-card-title class="title mb-0">
                         All Products
                     </v-card-title>
                       <v-data-iterator
@@ -17,8 +17,8 @@
                           hide-default-footer
                           >
                           <template v-slot:default="props">
-                              <v-main class="pa-5">
-                              <v-row>
+                              <v-main class="px-lg-5 px-md-4 py-3">
+                              <v-row :dense="$vuetify.breakpoint.xs ? true : false">
                               <v-col
                                   v-for="item in props.items"
                                   :key="item.productName"
@@ -30,7 +30,7 @@
                                   <v-hover
                                     v-slot="{ hover }"
                                   >
-                                  <v-card class="item-selection ma-0" :elevation="hover ? 3 : 0" style="cursor:pointer" flat>
+                                  <v-card class="item-selection" :elevation="hover ? 3 : 0" style="cursor:pointer" flat>
                                   <v-container v-ripple @click="addToCart(item.imageLink,item.productName,item.sellPrice)">
                                       <v-img
                                     contain
@@ -51,12 +51,12 @@
                                       </v-container>
                                     </v-img>
                                     <v-card-title style="height:60px;font-size:14px;letter-spacing: 1px;line-height: normal;">
-                                    <div align="center" justify="center" class="ma-0">
+                                    <div align="center" justify="center">
                                         {{item.productName}}
                                     </div>
                                   </v-card-title>  
                                   <v-card-content>
-                                      <v-list-item-content align="center" class="pa-2" style="display:block;font-sbackground-color:white;ize:12px">
+                                      <v-list-item-content align="center" class="py-2" style="display:block;font-sbackground-color:white;ize:12px">
                                           <v-chip
                                             :color="getColor(item.inStock)"
                                             style="font-size:13px; margin:5px"

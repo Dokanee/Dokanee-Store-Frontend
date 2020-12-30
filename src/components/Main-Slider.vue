@@ -2,6 +2,7 @@
     <v-card
     elevation="0"
     max-width="99%"
+    max-width-xm="100%"
     color="#F7F7F7"
     class="mx-auto mt-2"
   >

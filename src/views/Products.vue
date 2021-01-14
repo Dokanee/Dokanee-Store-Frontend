@@ -1,5 +1,16 @@
 <template>
   <v-app>
+      <v-navigation-drawer
+      fixed
+      v-model="drawer"
+      clipped
+      app
+      width="280"
+      height="100%"
+    >
+    <Nav-drawer></Nav-drawer>
+    
+    </v-navigation-drawer>
     <v-app-bar color="white" height="80" app clipped-left>
         <v-app-bar-nav-icon class="hidden-lg-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
         <span class="large title ml-3 mr-2"><span style="color:#00AC9C"><strong>Dokanee&nbsp;</strong></span><span class="font-weight-light">Store</span></span>
@@ -8,7 +19,6 @@
         class="hidden-sm-and-down"
         solo-inverted
         color="gray"
-        to="/search"
         placeholder="Search Products Name You Need"
         flat
         hide-details
@@ -31,28 +41,8 @@
     </v-app-bar>
      <v-content clipped style="background-color:#F7F7F7">
       <v-container fluid>
-    <v-row>
-        <v-col sm="3" offset-lg="1">
-            <v-card v-if="$vuetify.breakpoint.smAndUp">
-                <v-card-title>
-                    Filter:
-                </v-card-title>
-            </v-card>
-        <v-expansion-panels hover accordion v-else>
-            <v-expansion-panel>
-            <v-expansion-panel-header expand-icon="mdi-menu-down">
-            Filters
-            </v-expansion-panel-header>
-            <v-expansion-panel-content class="pl-8">
-                <v-text link style="font-size:14px">No Filters Found!</v-text>
-            </v-expansion-panel-content>
-            </v-expansion-panel>
-        </v-expansion-panels>
-        </v-col>
-        <v-col  sm="9" lg="7">
-        <all-items></all-items>
-        </v-col>
-    </v-row>
+      <Slide-Group></Slide-Group>
+      <all-items></all-items>
       </v-container>
     </v-content>
     <!-- <v-footer color="#E7E7E7" app>

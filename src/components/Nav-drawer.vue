@@ -6,7 +6,7 @@
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>{{ storeInfo.ownerName }}</v-list-item-title>
-           <v-list-item-subtitle>Store Owner</v-list-item-subtitle>
+            <v-list-item-subtitle>Store Owner</v-list-item-subtitle>
           </v-list-item-content>
           <v-btn elevation="1" icon fev>
               <v-icon title="About" size="25">mdi-information-outline</v-icon>
@@ -17,8 +17,7 @@
       
        <v-list dense>
         <v-list-item link :to="'/'+subDomain+'/products'">
-        <span style="font-size:14px" class="text-truncate"><v-icon class="mr-4" left size="20">mdi-all-inclusive</v-icon>All Products</span>
-       </v-list-item>
+        <span style="font-size:14px" class="text-truncate"><v-icon class="mr-4" left size="20">mdi-all-inclusive</v-icon>All Products</span>        </v-list-item>
       <v-list-group
         v-for="item in items"
         :key="item.title"
@@ -63,7 +62,7 @@ import {mapGetters, mapActions} from "vuex";
     data () {
       return {
         subDomain: this.$route.params.store,
-       items: [
+        items: [
           { title: 'Electronic Devices', icon: 'mdi-devices',items: [
             { title: 'Breakfast & brunch' },
             { title: 'New American' },
@@ -90,7 +89,7 @@ import {mapGetters, mapActions} from "vuex";
     created() {
       this.getInfo();
     }
- }
+  }
 </script>
 <style>
 .infoo {

@@ -16,7 +16,7 @@
         <v-app-bar-nav-icon class="hidden-lg-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
         <span class="large title ml-3 mr-2"><span style="color:#00AC9C"><strong>{{ storeInfo.storeName }}&nbsp;</strong></span></span>
         <!-- <span class="font-weight-light">Store</span> -->
-<v-spacer></v-spacer>
+       <v-spacer></v-spacer>
       <v-text-field
         class="hidden-sm-and-down"
         solo-inverted
@@ -82,5 +82,5 @@ import {mapGetters, mapActions} from "vuex";
     created() {
       this.getInfo();
     }
- }
+  }
 </script>

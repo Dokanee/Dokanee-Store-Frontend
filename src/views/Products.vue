@@ -59,6 +59,7 @@ import MainSlider from "@/components/Main-Slider.vue";
 import SlideGroup from "@/components/SlideGroup.vue";
 import AllItems from "../components/AllItems.vue";
 import {mapGetters, mapActions} from "vuex";
+
   export default {
     components: {
       "Nav-drawer": Navdrawer,

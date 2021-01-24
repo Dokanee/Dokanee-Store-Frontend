@@ -82,5 +82,6 @@ import {mapGetters, mapActions} from "vuex";
     created() {
       this.getInfo();
     }
+
   }
 </script>

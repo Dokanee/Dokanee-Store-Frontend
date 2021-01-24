@@ -31,7 +31,7 @@
                                     v-slot="{ hover }"
                                   >
                                   <v-card class="item-selection" :elevation="hover ? 3 : 0" style="cursor:pointer" flat>
-                                  <v-container v-ripple @click="addToCart(item.imageLink,item.productName,item.sellPrice)">
+                                  <v-container v-ripple @click="productInfo = true ,pInfo(item)">
                                       <v-img
                                     contain
                                       class="white--text"
@@ -86,7 +86,65 @@
                           </template>
                   </v-data-iterator>
               </v-card>
-              </v-row>
+              <v-dialog
+                    v-model="productInfo"
+                    max-width="950"
+                  >
+                    <v-card class="pa-8">
+                      <v-row>
+                        <v-col cols="12" lg="6">
+                          <v-img
+                              contain
+                              max-width="350"
+                              justify="center"
+                              class="white--text mx-auto"
+                              src="https://pngimg.com/uploads/men_shoes/men_shoes_PNG7475.png">
+                              <v-container fill-height fluid>
+                                <v-layout fill-height>
+                                  <v-flex xs12 align-end flexbox>
+                                  <v-chip
+                                  color="#ea5455"
+                                  style="color:white;font-size:12px">
+                                    New
+                                  </v-chip>    
+                                  </v-flex>
+                                </v-layout>
+                              </v-container>
+                            </v-img>
+                        </v-col>
+                        <v-col cols="12" lg="6">
+                          <v-card-title>
+                            {{ pInfoItem.productName }}
+                          </v-card-title>
+                          <v-card-subtitle>
+                              <strong>Description:</strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                          </v-card-subtitle>
+                          <v-card-subtitle>
+                            <v-chip :color="getColor(pInfoItem.inStock)" outlined>
+                                            {{ getStockAns( pInfoItem.inStock) }}
+                          </v-chip><br><br>
+                          <strong style="font-size:16px">Price: {{ pInfoItem.sellPrice }} Tk</strong>
+                          </v-card-subtitle>
+                          
+                          <v-card-actions :color="color"  class="ma-0 pa-0">
+                                      <v-btn color="grey lighten-2" large round depressed class="mx-auto" @click="colchange">ADD TO CART</v-btn>
+                                      
+                          </v-card-actions>
+                        </v-col>
+                      </v-row>
+                      <v-card-actions>
+                        <v-btn
+                          color="red"
+                          icon
+                          absolute top right
+                          @click="productInfo = false"
+                        >
+                          <v-icon color="white">mdi-close</v-icon>
+                        </v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+              </v-row>             
   </transition>
   </v-container>
 </div>
@@ -96,6 +154,7 @@ export default {
 data () {
         
     return {
+        productInfo: false,
         productQuantity: "1",
         itemsPerPageArray: [4, 8, 12, 50],
         search: '',
@@ -103,6 +162,7 @@ data () {
         rating: 3,
         sortDesc: false,
         page: 1,
+        pInfoItem: 1,
         color:"grey lighten-2",
         itemsPerPage: 10,
         sortBy: 'name',
@@ -256,6 +316,9 @@ data () {
       colchange(){
         this.color = this.color === "blue"?"grey lighten-2":"blue";
       },
+      pInfo(i){
+        this.pInfoItem = i;
+      }
     },
 }
 </script>

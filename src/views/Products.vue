@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer
+      <v-navigation-drawer
       fixed
       v-model="drawer"
       clipped
@@ -11,7 +11,6 @@
     <Nav-drawer></Nav-drawer>
     
     </v-navigation-drawer>
-
     <v-app-bar color="white" height="80" app clipped-left>
         <v-app-bar-nav-icon class="hidden-lg-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
         <span class="large title ml-3 mr-2"><span style="color:#00AC9C"><strong>{{ storeInfo.storeName }}&nbsp;</strong></span></span>
@@ -43,8 +42,8 @@
     </v-app-bar>
      <v-content clipped style="background-color:#F7F7F7">
       <v-container fluid>
-      <Main-slider></Main-slider>
       <Slide-Group></Slide-Group>
+      <!-- <p>{{ $route.params.catName }}</p> -->
       <all-items></all-items>
       </v-container>
     </v-content>
@@ -59,7 +58,6 @@ import Navdrawer from "@/components/Nav-drawer.vue";
 import MainSlider from "@/components/Main-Slider.vue";
 import SlideGroup from "@/components/SlideGroup.vue";
 import AllItems from "../components/AllItems.vue";
-import app from "../App";
 import {mapGetters, mapActions} from "vuex";
 
   export default {
@@ -69,19 +67,13 @@ import {mapGetters, mapActions} from "vuex";
       "Slide-Group": SlideGroup,
       "all-items": AllItems,
     },
-    data() {
-      return {
-        drawer: null,
-        subDomain: this.$route.params.store,
-      }
-    },
+    data: () => ({ drawer: null }),
     methods: {
-      ...mapActions(["getStoreInfo"])
+      ...mapActions(["getInfo"])
     },
     computed: mapGetters(["storeInfo"]),
     created() {
       this.getInfo();
     }
-
   }
 </script>

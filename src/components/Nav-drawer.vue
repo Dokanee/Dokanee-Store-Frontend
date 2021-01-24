@@ -5,7 +5,7 @@
             <img src="https://randomuser.me/api/portraits/women/81.jpg">
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Anika Tabassum</v-list-item-title>
+            <v-list-item-title>{{ storeInfo.ownerName }}</v-list-item-title>
             <v-list-item-subtitle>Store Owner</v-list-item-subtitle>
           </v-list-item-content>
           <v-btn elevation="1" icon fev>
@@ -14,35 +14,36 @@
         </v-list-item>
 
       <v-divider></v-divider>
-
-      <v-expansion-panels hover accordion>
-        <v-expansion-panel
-           v-for="item in items"
-          :key="item.title"
-        >
-          <v-expansion-panel-header outline-color="red" class="py-0 my-0" expand-icon="mdi-menu-down">
-           <span style="font-size:14px" class="text-truncate"><v-icon class="mr-4" left size="20">{{ item.icon }}</v-icon>{{ item.title }}</span>
-          </v-expansion-panel-header>
-          <v-expansion-panel-content class="pl-8">
-            <v-text link style="font-size:14px">No Sub Category Found!</v-text>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
       
-      <!-- <v-list dense>
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-        >
-          <v-list-item-icon>
-            <v-icon size="20">{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
+       <v-list dense>
+        <v-list-item link :to="'/'+subDomain+'/products'">
+        <span style="font-size:14px" class="text-truncate"><v-icon class="mr-4" left size="20">mdi-all-inclusive</v-icon>All Products</span>
+        </v-list-item>
+      <v-list-group
+        v-for="item in items"
+        :key="item.title"
+        v-model="item.active"
+        no-action
+      >
+        <template v-slot:activator>
           <v-list-item-content>
-            <v-list-item-title style="font-size:14px">{{ item.title }}</v-list-item-title>
+            <span style="font-size:14px" class="text-truncate"><v-icon class="mr-4" left size="20">{{ item.icon }}</v-icon>{{ item.title }}</span>
+          </v-list-item-content>
+        </template>
+
+        <v-list-item
+          v-for="child in item.items"
+          :key="child.title"
+          link
+          :to="item.link" 
+        >
+          <v-list-item-content>
+            <v-list-item-title v-text="child.title"></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-      </v-list> -->
+      </v-list-group>
+    </v-list>
+    
     <div class="mb-4">.</div>
     <v-footer absolute color="#E7E7E7" padless>
     <v-col
@@ -56,12 +57,18 @@
 </template>
 
 <script>
+import {mapGetters, mapActions} from "vuex";
+
   export default {
     data () {
       return {
+        subDomain: this.$route.params.store,
         items: [
-          { title: 'All Products', icon: 'mdi-all-inclusive' },
-          { title: 'Electronic Devices', icon: 'mdi-devices' },
+          { title: 'Electronic Devices', icon: 'mdi-devices',items: [
+            { title: 'Breakfast & brunch' },
+            { title: 'New American' },
+            { title: 'Sushi' },
+          ], },
           { title: 'TV & Home Appliances', icon: 'mdi-television' },
           { title: 'Health & Beauty', icon: 'mdi-medical-bag' },
           { title: 'Babies & Toys', icon: 'mdi-human-female-girl' },
@@ -76,6 +83,13 @@
         ],
       }
     },
+     methods: {
+      ...mapActions(["getInfo"])
+    },
+    computed: mapGetters(["storeInfo"]),
+    created() {
+      this.getInfo();
+    }
   }
 </script>
 <style>

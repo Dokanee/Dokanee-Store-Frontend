@@ -17,8 +17,7 @@
       
        <v-list dense>
         <v-list-item link :to="'/'+subDomain+'/products'">
-        <span style="font-size:14px" class="text-truncate"><v-icon class="mr-4" left size="20">mdi-all-inclusive</v-icon>All Products</span>
-        </v-list-item>
+        <span style="font-size:14px" class="text-truncate"><v-icon class="mr-4" left size="20">mdi-all-inclusive</v-icon>All Products</span>        </v-list-item>
       <v-list-group
         v-for="item in items"
         :key="item.title"

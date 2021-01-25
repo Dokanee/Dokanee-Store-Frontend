@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Store from '../views/Store.vue'
+import Products from '../views/Products.vue'
+
 
 Vue.use(VueRouter)
 
@@ -11,8 +14,20 @@ const routes = [
   },
   {
     path: '/:store',
-    name: 'Home',
-    component: Home,
+    name: 'Store',
+    component: Store,
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: Home
+      },
+      {
+        path: 'category/:catName',
+        name: 'Products',
+        component: Products
+      },
+    ]
   //   children: [
   //     {
   //       path: 'not-found',

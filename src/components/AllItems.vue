@@ -5,7 +5,8 @@
       <v-row class="mb-12">
                   <v-card dense style="background-color:#F7F7F7" flat width="100%" class="mx-auto">
                     <v-card-title class="title mb-0">
-                        All Products
+                        {{ $route.params.catName }}
+                        {{ cleanString("Rin Power & white Powder 2x ") }}
                     </v-card-title>
                       <v-data-iterator
                           :items="items"
@@ -318,6 +319,9 @@ data () {
       },
       pInfo(i){
         this.pInfoItem = i;
+      },
+      cleanString(string) {
+          return string.replace(/\s/g, '-').toLowerCase()
       }
     },
 }

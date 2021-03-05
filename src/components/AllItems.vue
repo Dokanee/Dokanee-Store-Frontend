@@ -5,8 +5,9 @@
       <v-row class="mb-12">
                   <v-card dense style="background-color:#F7F7F7" flat width="100%" class="mx-auto">
                     <v-card-title class="title mb-0">
-                        {{ $route.params.catName }}
-                        {{ cleanString("Rin Power & white Powder 2x ") }}
+                        <!-- {{ $route.params.catName }} -->
+                        {{ returnString($route.params.catName) }}
+                        <!-- {{ cleanString("Rin Power & white Powder 2x ") }} -->
                     </v-card-title>
                       <v-data-iterator
                           :items="items"
@@ -69,7 +70,7 @@
                                           <v-chip
                                           color="matblue"
                                           style="color:black">
-                                            &#2547; {{ item.sellPrice }}
+                                            &#2547; {{ item.currentPrice }}
                                           </v-chip>
                                       </v-list-item-content>
                                       </v-card-content>
@@ -118,13 +119,13 @@
                             {{ pInfoItem.productName }}
                           </v-card-title>
                           <v-card-subtitle>
-                              <strong>Description:</strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                              <strong>Description:</strong>{{ pInfoItem.description }}
                           </v-card-subtitle>
                           <v-card-subtitle>
                             <v-chip :color="getColor(pInfoItem.inStock)" outlined>
                                             {{ getStockAns( pInfoItem.inStock) }}
                           </v-chip><br><br>
-                          <strong style="font-size:16px">Price: {{ pInfoItem.sellPrice }} Tk</strong>
+                          <strong style="font-size:16px">Price: {{ pInfoItem.currentPrice }} Tk</strong>
                           </v-card-subtitle>
                           
                           <v-card-actions :color="color"  class="ma-0 pa-0">
@@ -150,7 +151,9 @@
   </v-container>
 </div>
 </template>
+
 <script>
+import axios from "axios";
 export default {
 data () {
         
@@ -174,7 +177,11 @@ data () {
           'inStock',
         ],
         selingCart: [],
-        items: [
+        catName: "",
+        subDomain: this.$route.params.store,
+        items: [],
+        itemsInfo: [],
+        products: [
           {
             imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
             productName:'Rin Power white Powder 2x',
@@ -322,8 +329,65 @@ data () {
       },
       cleanString(string) {
           return string.replace(/\s/g, '-').toLowerCase()
-      }
+      },
+      returnString(string) {
+        if(string && string!="all-products")
+          {
+            this.catName = string;
+            this.loadProducts();
+            return string.replace('-',' ').toUpperCase()
+          }
+        else
+          {
+              this.loadAllProducts();
+              return "ALL PRODUCTS";
+          }
+      },
+      loadAllProducts(){
+        // console.log("prod loaded");
+        axios.get('https://dokanee-backend-monolithic.herokuapp.com/v1/shop/'+this.subDomain+'/products?pageNo=0&pageSize=20')
+          .then((r) => {
+          // console.log(r.data);
+          if (r.request.status == 200) {
+            // console.log(r.request.status);
+            this.items = r.data.shopProductModelResponses;
+            this.itemsInfo = r.data;
+          }
+        });
+        // console.log(this.items);
+      
     },
+    loadProducts(){
+        // console.log("prod loaded");
+        axios.get('https://dokanee-backend-monolithic.herokuapp.com/v1/shop/'+this.subDomain+'/products?pageNo=0&pageSize=20&subCategorySlug='+this.catName)
+          .then((r) => {
+          // console.log(r.data);
+          if (r.request.status == 200) {
+            // console.log(r.request.status);
+            this.items = r.data.shopProductModelResponses;
+            this.itemsInfo = r.data;
+          }
+        });
+        // console.log(this.items);
+      
+    }
+    },
+    // mounted(){
+    //   this.loadAllProducts();
+    // }
+    // mounted(){
+    //   if($route.params.catName=="all-products")
+    //       {
+    //         this.loadAllProducts();
+    //       }
+    //     else if($route.params.catName)
+    //       {
+    //         this.catName = string;
+    //         this.loadProducts();
+    //       }
+    //     else
+    //       this.loadAllProducts();
+    // }
 }
 </script>
 <style scoped>

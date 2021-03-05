@@ -16,7 +16,7 @@
       <v-divider></v-divider>
       
        <v-list dense>
-        <v-list-item link :to="'/'+subDomain+'/category/all'">
+        <v-list-item link :to="'/'+subDomain+'/category/all-products'">
         <span style="font-size:14px" class="text-truncate"><v-icon class="mr-4" left size="20">mdi-all-inclusive</v-icon>All Products</span>
         </v-list-item>
       <v-list-group
@@ -27,18 +27,17 @@
       >
         <template v-slot:activator>
           <v-list-item-content>
-            <span style="font-size:14px" class="text-truncate"><v-icon class="mr-4" left size="20">{{ item.icon }}</v-icon>{{ item.title }}</span>
+            <span style="font-size:14px" class="text-truncate"><v-icon class="mr-4" left size="20">mdi-label-outline</v-icon>{{ item.categoryName}}</span>
           </v-list-item-content>
         </template>
 
         <v-list-item
-          v-for="child in item.items"
-          :key="child.title"
-          link
-          :to="item.link" 
+          v-for="child in item.subCategoryList"
+          :key="child.subCategoryName"
+          link :to="'/'+subDomain+'/category/'+child.slug" 
         >
           <v-list-item-content>
-            <v-list-item-title v-text="child.title"></v-list-item-title>
+            <v-list-item-title v-text="child.subCategoryName"></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list-group>
@@ -46,24 +45,36 @@
     
     <div class="mb-4">.</div>
     <v-footer absolute color="#E7E7E7" padless>
-    <v-col
+      <v-col
       class="text-center"
       cols="12"
     >
-    <span style="font-size:13px"><strong>Build With <span style="color:#00AC9C;" href="https://dokanee.com.bd">Dokanee.com.bd</span></strong></span>
+    <span style="font-size:15px"><strong>Build With <span style="color:#00AC9C;" href="https://dokanee.com.bd">Dokanee</span></strong></span>
+    <div>
+      <v-btn
+      depressed
+      class="mt-3"
+      color="#00AC9C"
+      style="font-size:12px;color:white;"
+      href="https://dokanee.com.bd">
+       Make Yours
+      </v-btn>
+    </div>
     </v-col>
   </v-footer>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import {mapGetters, mapActions} from "vuex";
 
   export default {
     data () {
       return {
         subDomain: this.$route.params.store,
-        items: [
+        items: [],
+        categories: [
           { title: 'Electronic Devices', icon: 'mdi-devices',items: [
             { title: 'Breakfast & brunch' },
             { title: 'New American' },
@@ -84,7 +95,21 @@ import {mapGetters, mapActions} from "vuex";
       }
     },
      methods: {
-      ...mapActions(["getInfo"])
+      ...mapActions(["getInfo"]),
+      loadCategories(){
+        console.log("cat loaded");
+        axios.get('https://dokanee-backend-monolithic.herokuapp.com/v1/shop/'+this.subDomain+'/categories')
+          .then((r) => {
+          console.log(r.data);
+          if (r.request.status == 200) {
+            // console.log(r.request.status);
+            this.items = r.data.shopCategories;
+          }
+        });
+      }
+    },
+    mounted(){
+      this.loadCategories();
     },
     computed: mapGetters(["storeInfo"]),
     created() {

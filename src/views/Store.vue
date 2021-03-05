@@ -14,7 +14,7 @@
 
     <v-app-bar color="white" height="80" app clipped-left>
         <v-app-bar-nav-icon class="hidden-lg-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
-        <span class="large title ml-3 mr-2"><span style="color:#00AC9C"><strong>{{ storeInfo.storeName }}&nbsp;</strong></span></span>
+        <span class="large title ml-3 mr-2"><v-app-bar-title link to="/"><strong style="color:#00AC9C">{{ storeInfo.storeName }}&nbsp;</strong></v-app-bar-title></span>
         <!-- <span class="font-weight-light">Store</span> -->
        <v-spacer></v-spacer>
       <v-text-field

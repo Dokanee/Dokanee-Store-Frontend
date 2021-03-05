@@ -11,7 +11,7 @@ import Navdrawer from "@/components/Nav-drawer.vue";
 import MainSlider from "@/components/Main-Slider.vue";
 import SlideGroup from "@/components/SlideGroup.vue";
 import AllItems from "../components/AllItems.vue";
-import app from "../App";
+import app from "../App.vue";
 import {mapGetters, mapActions} from "vuex";
 
   export default {

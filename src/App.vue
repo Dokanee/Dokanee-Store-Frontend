@@ -23,13 +23,13 @@ export default {
     methods: {
       getStoreInfo() {
       let ins = this;
-      console.log(this.$route.params.store);
-      console.log("test");
+      // console.log(this.$route.params.store);
+      // console.log("test");
       axios.get("https://dokanee-backend-monolithic.herokuapp.com/dashboard/store/info?subDomain="+ins.subDomain)
         .then((r) => {
-          console.log(r.data);
+          // console.log(r.data);
           if (r.request.status == 200) {
-            console.log(r.request.status);
+            // console.log(r.request.status);
             this.$store.commit("setStoreInfo", r.data);
             // this.loadData(r.storeInfo);
           }

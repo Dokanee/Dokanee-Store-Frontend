@@ -34,7 +34,8 @@
         <v-list-item
           v-for="child in item.subCategoryList"
           :key="child.subCategoryName"
-          link :to="'/'+subDomain+'/category/'+child.slug" 
+          link :to="'/'+subDomain+'/category/'+child.slug"
+          @click="this.loadProducts()"
         >
           <v-list-item-content>
             <v-list-item-title v-text="child.subCategoryName"></v-list-item-title>

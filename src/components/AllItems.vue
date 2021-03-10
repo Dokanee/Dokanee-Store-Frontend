@@ -38,7 +38,7 @@
                                     contain
                                       class="white--text"
                                       height="160px"
-                                      src="https://pngimg.com/uploads/men_shoes/men_shoes_PNG7475.png"
+                                      :src="item.images[0]"
                                     >
                                       <v-container fill-height fluid>
                                         <v-layout fill-height>
@@ -96,11 +96,11 @@
                       <v-row>
                         <v-col cols="12" lg="6">
                           <v-img
-                              contain
+                              container
                               max-width="350"
                               justify="center"
                               class="white--text mx-auto"
-                              src="https://pngimg.com/uploads/men_shoes/men_shoes_PNG7475.png">
+                              src="https://qa-cdn.samsung.com/etc/designs/smg/global/imgs/support-new/img-no-product.png">
                               <v-container fill-height fluid>
                                 <v-layout fill-height>
                                   <v-flex xs12 align-end flexbox>
@@ -118,9 +118,7 @@
                           <v-card-title>
                             {{ pInfoItem.productName }}
                           </v-card-title>
-                          <v-card-subtitle>
-                              <strong>Description:</strong>{{ pInfoItem.description }}
-                          </v-card-subtitle>
+                          <br>
                           <v-card-subtitle>
                             <v-chip :color="getColor(pInfoItem.inStock)" outlined>
                                             {{ getStockAns( pInfoItem.inStock) }}
@@ -129,10 +127,47 @@
                           </v-card-subtitle>
                           
                           <v-card-actions :color="color"  class="ma-0 pa-0">
-                                      <v-btn color="grey lighten-2" large round depressed class="mx-auto" @click="colchange">ADD TO CART</v-btn>
-                                      
+
+                                        <v-btn color="grey lighten-2" large round depressed class="mx-auto" @click="colchange">Buy Now</v-btn>
+                                                                  
                           </v-card-actions>
                         </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-card-subtitle>
+                              <v-tabs
+                                v-model="tab"
+                                background-color="transparent"
+                                centered
+                                text
+                                color="black"
+                              >
+                                <v-tab
+                                key="1">
+                                  Description
+                                </v-tab>
+                                <v-tab
+                                key="2">
+                                  Reviews
+                                </v-tab>
+                                <v-tab
+                                key="2">
+                                  Comments
+                                </v-tab>
+                              </v-tabs>
+                              
+                              <v-tabs-items v-model="tab">
+                                  <v-tab-item
+                                  key="1"
+                                  >
+                                    <v-card
+                                      flat
+                                    >
+                                      <v-card-text><span v-html="pInfoItem.description"></span></v-card-text>
+                                    </v-card>
+                                  </v-tab-item>
+                                </v-tabs-items>
+                          </v-card-subtitle>
                       </v-row>
                       <v-card-actions>
                         <v-btn
@@ -158,6 +193,7 @@ export default {
 data () {
         
     return {
+        tab: null,
         productInfo: false,
         productQuantity: "1",
         itemsPerPageArray: [4, 8, 12, 50],
@@ -180,99 +216,7 @@ data () {
         catName: "",
         subDomain: this.$route.params.store,
         items: [],
-        itemsInfo: [],
-        products: [
-          {
-            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
-            productName:'Rin Power white Powder 2x',
-            sellPrice: 230,
-            inStock: true,
-          },
-          {
-            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
-            productName:'Rin Power white Powder',
-            sellPrice: 230,
-            inStock: true,
-          },
-          {
-            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
-            productName:'Rin Power white',
-            sellPrice: 230,
-            inStock: false,
-          },
-          {
-            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
-            productName:'RFL Table',
-            sellPrice: 230,
-            inStock: true,
-          },
-          {
-            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
-            productName:'Rin Power white Power 2x Max Pro Lite',
-            sellPrice: 230,
-            inStock: false,
-          },
-          {
-            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
-            productName:'Rin Power white Power 2x',
-            sellPrice: 230,
-            inStock: true,
-          },
-          {
-            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
-            productName:'Rin Power white Power 2x',
-            sellPrice: 230,
-            inStock: true,
-          },
-          {
-            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
-            productName:'Rin Power white Power 2x',
-            sellPrice: 230,
-            inStock: true,
-          },
-          {
-            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
-            productName:'Rin Power white Power 2x',
-            sellPrice: 230,
-            inStock: true,
-          },
-          {
-            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
-            productName:'Rin Power white Power 2x',
-            sellPrice: 230,
-            inStock: true,
-          },
-          {
-            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
-            productName:'Rin Power white Power 2x',
-            sellPrice: 230,
-            inStock: true,
-          },
-          {
-            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
-            productName:'Rin Power white Power 2x',
-            sellPrice: 230,
-            inStock: true,
-          },
-          {
-            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
-            productName:'Rin Power white Power 2x',
-            sellPrice: 230,
-            inStock: true,
-          },{
-            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
-            productName:'Rin Power white Power 2x',
-            sellPrice: 230,
-            inStock: true,
-          },
-          {
-            imageLink: 'https://wineguide.wein.plus/uploads/editor/images/6739/59c28a0334395_q80.jpg',
-            productName:'Rin Power white Power 2x',
-            sellPrice: 230,
-            inStock: true,
-          },
-          
-        ],
+        itemsInfo: []
       }
     },
     // created() {
@@ -333,13 +277,10 @@ data () {
       returnString(string) {
         if(string && string!="all-products")
           {
-            this.catName = string;
-            this.loadProducts();
-            return string.replace('-',' ').toUpperCase()
+            return string.replace('-',' ').slice(0, -8).toUpperCase()
           }
         else
           {
-              this.loadAllProducts();
               return "ALL PRODUCTS";
           }
       },
@@ -370,19 +311,40 @@ data () {
         });
         // console.log(this.items);
       
+    },
+    remount(){
+      if(this.$route.params.catName=="all-products")
+          {
+            this.loadAllProducts();
+          }
+        else if(this.$route.params.catName)
+          {
+            this.catName = this.$route.params.catName;
+            this.loadProducts();
+          }
+        else
+          this.loadAllProducts();
     }
     },
     // mounted(){
     //   this.loadAllProducts();
     // }
+    watch: {
+    '$route.params.catName': function (catName) {
+      this.remount()
+    }
+    },
+    created: function () {
+      this.remount()
+    }
     // mounted(){
-    //   if($route.params.catName=="all-products")
+    //   if(this.$route.params.catName=="all-products")
     //       {
     //         this.loadAllProducts();
     //       }
-    //     else if($route.params.catName)
+    //     else if(this.$route.params.catName)
     //       {
-    //         this.catName = string;
+    //         this.catName = this.$route.params.catName;
     //         this.loadProducts();
     //       }
     //     else

@@ -2,7 +2,7 @@
   <div>
     <v-list-item two-line>
           <v-list-item-avatar>
-            <img src="https://randomuser.me/api/portraits/women/81.jpg">
+            <img src="http://res.cloudinary.com/to-let-app/image/upload/v1605377112/ni6ion84e391ham83oey.png">
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>{{ storeInfo.ownerName }}</v-list-item-title>
@@ -98,7 +98,6 @@ import {mapGetters, mapActions} from "vuex";
      methods: {
       ...mapActions(["getInfo"]),
       loadCategories(){
-        console.log("cat loaded");
         axios.get('https://dokanee-backend-monolithic.herokuapp.com/v1/shop/'+this.subDomain+'/categories')
           .then((r) => {
           console.log(r.data);

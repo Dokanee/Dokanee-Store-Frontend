@@ -25,17 +25,25 @@ export default {
       let ins = this;
       // console.log(this.$route.params.store);
       // console.log("test");
-      axios.get("https://dokanee-backend-monolithic.herokuapp.com/dashboard/store/info?subDomain="+ins.subDomain)
+      axios.get("https://dokanee-backend-monolithic.herokuapp.com/dashboard/store/info?subDomain="+this.$route.params.store)
         .then((r) => {
           // console.log(r.data);
+
           if (r.request.status == 200) {
             // console.log(r.request.status);
             this.$store.commit("setStoreInfo", r.data);
             // this.loadData(r.storeInfo);
           }
+          // else if (ins.subDomain=="undefined")
+          // {
+          //   console.log("this is null!")
+          // }
         })
         .catch((e) => {
-            this.$router.push("/"+ins.subDomain+"/not-found");
+            if (ins.subDomain != undefined)
+            {
+              this.$router.push("/"+ins.subDomain+"/not-found");
+            }
         });
     },
     // loadData(e) {
@@ -46,6 +54,14 @@ export default {
     mounted() {
     this.getStoreInfo();
     },
+    watch: {
+    '$route.params.store': function (store) {
+      this.getStoreInfo()
+    }
+    },
+    created: function () {
+      this.getStoreInfo()
+    }
 }
 </script>
 <style>

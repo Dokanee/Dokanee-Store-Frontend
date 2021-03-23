@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Store from '../views/Store.vue'
 import Products from '../views/Products.vue'
+import Shop from '../views/Shop.vue'
 
 
 Vue.use(VueRouter)
@@ -10,7 +11,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'root',
+    name: 'Shop',
+    component: Shop
   },
   {
     path: '/:store',

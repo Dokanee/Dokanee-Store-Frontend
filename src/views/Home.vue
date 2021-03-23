@@ -33,7 +33,8 @@ import {mapGetters, mapActions} from "vuex";
     computed: mapGetters(["storeInfo"]),
     created() {
       this.getInfo();
+      document.title("Dokanee Shop");
     }
-
+    
   }
 </script>

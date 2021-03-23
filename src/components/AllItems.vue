@@ -134,6 +134,7 @@
                         </v-col>
                       </v-row>
                       <v-row>
+                        <v-col cols="12" lg="12">
                         <v-card-subtitle>
                               <v-tabs
                                 v-model="tab"
@@ -168,6 +169,7 @@
                                   </v-tab-item>
                                 </v-tabs-items>
                           </v-card-subtitle>
+                          </v-col>
                       </v-row>
                       <v-card-actions>
                         <v-btn

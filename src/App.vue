@@ -34,10 +34,6 @@ export default {
             this.$store.commit("setStoreInfo", r.data);
             // this.loadData(r.storeInfo);
           }
-          // else if (ins.subDomain=="undefined")
-          // {
-          //   console.log("this is null!")
-          // }
         })
         .catch((e) => {
             if (ins.subDomain != undefined)
@@ -50,17 +46,38 @@ export default {
     //   console.log(e);
     //   this.$store.commit("setStoreInfo", e);
     // },
+    getTemplateInfo() {
+      let ins = this;
+      // console.log(this.$route.params.store);
+      // console.log("test");
+      axios.get("https://dokanee-backend-monolithic.herokuapp.com/v1/shop/"+this.$route.params.store+"/template")
+        .then((r) => {
+          // console.log(r.data);
+
+          if (r.request.status == 200) {
+            // console.log(r.request.status);
+            this.$store.commit("setTemplateInfo", r.data.data);
+            // this.loadData(r.storeInfo);
+          }
+        })
+        .catch((e) => {
+            console.log("No Template found");
+        });
+    },
     },
     mounted() {
     this.getStoreInfo();
+    this.getTemplateInfo();
     },
     watch: {
     '$route.params.store': function (store) {
       this.getStoreInfo()
+      this.getTemplateInfo()
     }
     },
     created: function () {
       this.getStoreInfo()
+      this.getTemplateInfo()
     }
 }
 </script>

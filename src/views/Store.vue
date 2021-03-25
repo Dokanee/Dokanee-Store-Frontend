@@ -12,9 +12,15 @@
     
     </v-navigation-drawer>
 
-    <v-app-bar color="white" height="80" app clipped-left>
+    <v-app-bar color="white" height="70" app clipped-left>
         <v-app-bar-nav-icon class="hidden-lg-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
-        <span class="large title ml-3 mr-2"><v-app-bar-title link to="/"><strong style="color:#00AC9C">{{ storeInfo.storeName }}&nbsp;</strong></v-app-bar-title></span>
+        <v-app-bar-logo v-show="storeInfo.storeImages[0] ? true : false"><v-img 
+        class="mx-2"
+        max-height="60"
+        max-width="200"
+        contain
+        :src="storeInfo.storeImages[0]"></v-img></v-app-bar-logo>
+        <v-app-bar-title class="large title ml-3 mr-2"  v-show="storeInfo.storeImages[0] ? false : true" link to="/"><strong style="color:#00AC9C">{{ storeInfo.storeName }}&nbsp;</strong></v-app-bar-title>
         <!-- <span class="font-weight-light">Store</span> -->
        <v-spacer></v-spacer>
       <v-text-field
@@ -23,6 +29,7 @@
         color="gray"
         placeholder="Search Products Name You Need"
         flat
+        rounded
         hide-details
         label=""
         prepend-inner-icon="mdi-shopping-search"
@@ -74,12 +81,16 @@ import {mapGetters, mapActions} from "vuex";
       }
     },
     methods: {
-      ...mapActions(["getStoreInfo"])
+      ...mapActions(["getStoreInfo","getTemplateInfo"])
     },
-    computed: mapGetters(["storeInfo"]),
+    computed:
+      mapGetters(["storeInfo", "templateInfo"]),
+
     created() {
       this.getInfo();
-    }
-
+      this.getTemplate();
+    },
+    mounted() {
+    },
   }
 </script>

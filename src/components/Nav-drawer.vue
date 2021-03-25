@@ -2,7 +2,7 @@
   <div>
     <v-list-item two-line>
           <v-list-item-avatar>
-            <img src="http://res.cloudinary.com/to-let-app/image/upload/v1605377112/ni6ion84e391ham83oey.png">
+             <v-img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTugu0kegXOT1Gh1sgDVHvYjkGW29w19Hl9gQ&usqp=CAU"></v-img>
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>{{ storeInfo.ownerName }}</v-list-item-title>
@@ -27,7 +27,7 @@
       >
         <template v-slot:activator>
           <v-list-item-content>
-            <span style="font-size:14px" class="text-truncate"><v-icon class="mr-4" left size="20">mdi-label-outline</v-icon>{{ item.categoryName}}</span>
+            <span style="font-size:14px" class="text-truncate"><v-icon class="mr-4" left size="20">{{ item.categoryIcon ? item.categoryIcon : 'mdi-label-outline' }}</v-icon>{{ item.categoryName}}</span>
           </v-list-item-content>
         </template>
 
@@ -96,7 +96,7 @@ import {mapGetters, mapActions} from "vuex";
       }
     },
      methods: {
-      ...mapActions(["getInfo"]),
+      ...mapActions(["getStoreInfo"]),
       loadCategories(){
         axios.get('https://dokanee-backend-monolithic.herokuapp.com/v1/shop/'+this.subDomain+'/categories')
           .then((r) => {

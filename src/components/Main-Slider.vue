@@ -7,39 +7,36 @@
     class="mx-auto mt-2"
   >
     <v-carousel
+      v-show="templateInfo.sliderImages? true : false"
       :continuous="true"
       :cycle="true"
+      :color="colors"
       :show-arrows="false"
       hide-delimiter-background
       delimiter-icon="mdi-minus"
-      height="380"
+      height="400"
     >
       <v-carousel-item
-      style="background-color:#F7F7F7"
-        v-for="(slide, i) in slides"
+      style="background-color:#F7F7F7;
+      filter: blur(0px);
+      -webkit-filter: blur(0px);
+      "
+        v-for="(slide, i) in templateInfo.sliderImages"
         :key="i"
+        :src=" slide "
       >
-        <v-sheet
-        class="rounded"
-          :color="colors[i]"
-          height="100%"
-          tile
-        >
-          <v-row
-            class="fill-height"
-            align="center"
-            justify="center"
-          >
-            <div class="display-3">
-              {{ slide }} Slide
-            </div>
-          </v-row>
-        </v-sheet>
+      </v-carousel-item>
+      <v-carousel-item
+      :v-show="templateInfo.sliderImages[0]==null ? true : false"
+      style="background-color:#F7F7F7;"
+      src="http://www.edamba.eu/Runtime/no-image.jpg"
+      >
       </v-carousel-item>
     </v-carousel>
   </v-card>    
 </template>
 <script>
+import {mapGetters, mapActions} from "vuex";
   export default {
     data () {
       return {
@@ -57,7 +54,21 @@
           'Fourth',
           'Fifth',
         ],
+        sliderImages: [
+          "http://res.cloudinary.com/to-let-app/image/upload/v1616687205/prlszbdw03zlhbmdfyd8.jpg",
+          "http://res.cloudinary.com/to-let-app/image/upload/v1616687206/v07frgub8exmyriez3la.jpg",
+        ],
       }
+    },
+    methods: {
+      ...mapActions(["getStoreInfo","getTemplateInfo"]),
+    },
+    computed:
+      mapGetters(["storeInfo", "templateInfo"]),
+
+    created() {
+      this.getInfo();
+      this.getTemplate();
     },
   }
 </script>

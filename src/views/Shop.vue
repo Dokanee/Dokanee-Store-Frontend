@@ -25,7 +25,12 @@
           </v-btn>
         </v-row>
         <v-row>
-          
+         <div>
+           <v-container class="text-center">
+             <v-row>
+             </v-row>
+            </v-container>
+         </div>
         </v-row>
       </v-container>
     </v-app-bar>
@@ -36,11 +41,14 @@
             Total Shop : <v-chip outlined color="gray">{{shopInfo.data.totalContent}}</v-chip>
           </h4>
         </v-row>
-        <v-row>
+        <v-row :dense="$vuetify.breakpoint.xs ? true : false">
           <v-col
             v-for="n in shopList"
+            track-by="n"
             :key="n"
-            cols="3"
+            cols="6"
+            sm="4"
+            lg="3"
           >
               <v-card
     class="mx-auto pb-2"
@@ -50,7 +58,7 @@
     @click="visit(n)"
   >
     <v-img
-      src="https://uploads-ssl.webflow.com/5c14e387dab576fe667689cf/5f76d7cb690e57c164388d32_Artboard%208.png"
+      :src="n.storeLogo==null ? 'https://uploads-ssl.webflow.com/5c14e387dab576fe667689cf/5f76d7cb690e57c164388d32_Artboard%208.png' : n.storeLogo"
       height="180px"
     ></v-img>
 
@@ -123,6 +131,7 @@ import axios from "axios";
         shopInfo: [],
         shopList: [],
         rating: 4,
+
       }
     },
     methods: {
@@ -142,7 +151,8 @@ import axios from "axios";
         // console.log(this.items);
     },
     visit(n){
-      this.$router.push("/"+n.subDomain);
+      let route = this.$router.resolve({path: "/"+n.subDomain});
+      window.open(route.href, '_blank');
     }
     },
     watch: {
@@ -159,7 +169,9 @@ import axios from "axios";
     },
     mounted() {
       this.loadShopList();
-    }
+    },
+    computed: {
+    },
 
   }
 </script>

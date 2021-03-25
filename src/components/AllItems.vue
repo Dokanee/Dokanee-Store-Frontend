@@ -38,7 +38,7 @@
                                     contain
                                       class="white--text"
                                       height="160px"
-                                      :src="item.images[0]"
+                                      :src="item.images[0]==null ? 'https://qa-cdn.samsung.com/etc/designs/smg/global/imgs/support-new/img-no-product.png' : item.images[0]"
                                     >
                                       <v-container fill-height fluid>
                                         <v-layout fill-height>

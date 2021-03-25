@@ -7,14 +7,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    info: ""
+    info: "",
+    template: ""
   },
   getters: {
-    storeInfo: state => state.info
+    storeInfo: state => state.info,
+    templateInfo: state => state.template
   },
   mutations: {
     setStoreInfo(state, payload) {
       state.info = payload;
+    },
+    setTemplateInfo(state, payload) {
+      state.template = payload;
     }
   },
   actions: {

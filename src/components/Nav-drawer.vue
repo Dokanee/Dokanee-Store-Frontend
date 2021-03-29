@@ -2,7 +2,7 @@
   <div>
     <v-list-item two-line>
           <v-list-item-avatar>
-             <v-img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTugu0kegXOT1Gh1sgDVHvYjkGW29w19Hl9gQ&usqp=CAU"></v-img>
+             <v-img :src="storeInfo.ownerPhotoLink==null ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTugu0kegXOT1Gh1sgDVHvYjkGW29w19Hl9gQ&usqp=CAU' : storeInfo.ownerPhotoLink "></v-img>
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>{{ storeInfo.ownerName }}</v-list-item-title>
@@ -55,7 +55,7 @@
       <v-btn
       depressed
       class="mt-3"
-      color="#00AC9C"
+      color="primary"
       style="font-size:12px;color:white;"
       href="https://dokanee.com.bd">
        Make Yours
@@ -96,7 +96,7 @@ import {mapGetters, mapActions} from "vuex";
       }
     },
      methods: {
-      ...mapActions(["getStoreInfo"]),
+      ...mapActions(["getStoreInfo","getTemplateInfo"]),
       loadCategories(){
         axios.get('https://dokanee-backend-monolithic.herokuapp.com/v1/shop/'+this.subDomain+'/categories')
           .then((r) => {
@@ -111,9 +111,10 @@ import {mapGetters, mapActions} from "vuex";
     mounted(){
       this.loadCategories();
     },
-    computed: mapGetters(["storeInfo"]),
+    computed: mapGetters(["storeInfo","templateInfo"]),
     created() {
       this.getInfo();
+      this.getTemplate();
     }
   }
 </script>

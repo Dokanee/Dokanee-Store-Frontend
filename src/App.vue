@@ -25,13 +25,13 @@ export default {
       let ins = this;
       // console.log(this.$route.params.store);
       // console.log("test");
-      axios.get("https://dokanee-backend-monolithic.herokuapp.com/dashboard/store/info?subDomain="+this.$route.params.store)
+      axios.get("https://dokanee-backend-monolithic.herokuapp.com/v1/shop/"+this.$route.params.store)
         .then((r) => {
-          // console.log(r.data);
+          console.log(r.data);
 
           if (r.request.status == 200) {
             // console.log(r.request.status);
-            this.$store.commit("setStoreInfo", r.data);
+            this.$store.commit("setStoreInfo", r.data.data);
             // this.loadData(r.storeInfo);
           }
         })
@@ -58,6 +58,8 @@ export default {
             // console.log(r.request.status);
             this.$store.commit("setTemplateInfo", r.data.data);
             // this.loadData(r.storeInfo);
+            this.$vuetify.theme.themes.light.primary = r.data.data.primaryColor.slice(0, -2)
+            this.$vuetify.theme.themes.light.secondary = r.data.data.secondaryColor.slice(0, -2)
           }
         })
         .catch((e) => {

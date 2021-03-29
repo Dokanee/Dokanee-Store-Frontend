@@ -1,86 +1,24 @@
 <template>
-  <v-app>
-    <v-navigation-drawer
-      fixed
-      v-model="drawer"
-      clipped
-      app
-      width="280"
-      height="100%"
-    >
-    <Nav-drawer></Nav-drawer>
-    
-    </v-navigation-drawer>
-
-    <v-app-bar color="white" height="70" app clipped-left>
-        <v-app-bar-nav-icon class="hidden-lg-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
-        <v-app-bar-logo v-show="storeInfo.storeImages[0] ? true : false"><v-img 
-        class="mx-2"
-        max-height="60"
-        max-width="200"
-        contain
-        :src="storeInfo.storeImages[0]"></v-img></v-app-bar-logo>
-        <v-app-bar-title class="large title ml-3 mr-2"  v-show="storeInfo.storeImages[0] ? false : true" link to="/"><strong style="color:#00AC9C">{{ storeInfo.storeName }}&nbsp;</strong></v-app-bar-title>
-        <!-- <span class="font-weight-light">Store</span> -->
-       <v-spacer></v-spacer>
-      <v-text-field
-        class="hidden-sm-and-down"
-        solo-inverted
-        color="gray"
-        placeholder="Search Products Name You Need"
-        flat
-        rounded
-        hide-details
-        label=""
-        prepend-inner-icon="mdi-shopping-search"
-      ></v-text-field>
-      <v-spacer ></v-spacer>
-      <v-btn class="hidden-md-and-up mr-n2" icon feb>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <v-btn class="ma-4" icon feb>
-        <v-icon>mdi-cart</v-icon>
-      </v-btn>
-      <v-avatar>
-      <img
-        src="https://cdn.vuetifyjs.com/images/john.jpg"
-        alt="John"
-      >
-    </v-avatar>
-    </v-app-bar>
-     <v-content clipped style="background-color:#F7F7F7">
-      <v-container fluid>
-      <router-view></router-view>
-      </v-container>
-    </v-content>
-    <!-- <v-footer color="#E7E7E7" app>
-      <span style="font-size:12px; text-align:right" class="justify-center black--text black--border">Copyright &copy; {{ new Date().getFullYear() }} | Dokanee.com.bd</span>
-    </v-footer> -->
-  </v-app>
+  <div>
+   <Template-1 v-if="templateInfo.templateId==1 || templateInfo.templateId==null"></Template-1>
+   <Template-2 v-if="templateInfo.templateId==2"></Template-2>
+  </div>
 </template>
-
 <script>
-import Navdrawer from "@/components/Nav-drawer.vue";
-import MainSlider from "@/components/Main-Slider.vue";
-import SlideGroup from "@/components/SlideGroup.vue";
-import AllItems from "../components/AllItems.vue";
-import app from "../App";
+import Template1 from '../views/template1'
+import Template2 from '../views/Template2'
 import {mapGetters, mapActions} from "vuex";
-
-  export default {
-    components: {
-      "Nav-drawer": Navdrawer,
-      "Main-slider": MainSlider,
-      "Slide-Group": SlideGroup,
-      "all-items": AllItems,
-    },
-    data() {
-      return {
-        drawer: null,
-        subDomain: this.$route.params.store,
-      }
-    },
-    methods: {
+export default {
+  components: {
+      "Template-1": Template1,
+      "Template-2": Template2,
+  },
+  data() {
+    return {
+      template: 2,
+    }
+  },
+   methods: {
       ...mapActions(["getStoreInfo","getTemplateInfo"])
     },
     computed:
@@ -89,8 +27,6 @@ import {mapGetters, mapActions} from "vuex";
     created() {
       this.getInfo();
       this.getTemplate();
-    },
-    mounted() {
-    },
-  }
+    }
+}
 </script>

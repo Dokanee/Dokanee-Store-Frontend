@@ -3,7 +3,7 @@
     <v-app-bar
       app
       shrink-on-scroll
-      src="https://chaldn.com/asset/Egg.Grocery.Fabric/Egg.Grocery.Web1/1.5.0+Release-1879/Default/stores/chaldal/components/landingPage2/LandingPage/images/landingBannerTop.jpg"
+      src="https://s3.envato.com/files/292823352/FMZ_4195_wide.jpg"
       fade-img-on-scroll
     >
       <v-container>

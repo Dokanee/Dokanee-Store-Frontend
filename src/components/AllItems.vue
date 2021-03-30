@@ -2,8 +2,8 @@
 <div> 
     <v-container fluid>
       <transition name="fade">
-      <v-row>
-                  <v-card dense style="background-color:#F7F7F7" flat class="mx-auto">
+      <v-row class="mb-12">
+                  <v-card dense style="background-color:#F7F7F7" flat width="100%" class="mx-auto">
                     <v-card-title class="title mb-0">
                         <!-- {{ $route.params.catName }} -->
                         {{ returnString($route.params.catName) }}

@@ -27,11 +27,12 @@
         class="hidden-sm-and-down"
         solo-inverted
         color="gray"
-        placeholder="Search Products Name You Need"
+        placeholder=""
         flat
         rounded
         hide-details
-        label=""
+        label="Search Products Name You Need"
+        v-model="search"
         prepend-inner-icon="mdi-shopping-search"
       ></v-text-field>
       <v-spacer ></v-spacer>
@@ -79,6 +80,7 @@ import {mapGetters, mapActions} from "vuex";
       return {
         drawer: null,
         subDomain: this.$route.params.store,
+        search: "",
       }
     },
     methods: {
@@ -86,7 +88,11 @@ import {mapGetters, mapActions} from "vuex";
     },
     computed:
       mapGetters(["storeInfo", "templateInfo"]),
-
+    watch: {
+      search: function (search) {
+        this.$router.push('/'+this.subDomain+'/search/'+search)
+    }
+    },
     created() {
       this.getInfo();
       this.getTemplate();

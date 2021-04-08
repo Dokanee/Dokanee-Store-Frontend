@@ -14,7 +14,7 @@
       :show-arrows="false"
       hide-delimiter-background
       delimiter-icon="mdi-minus"
-      :height="$vuetify.breakpoint.xs ? 200 : 400"
+      :height="$vuetify.breakpoint.xs ? 200 : 360"
     >
       <v-carousel-item
       style="background-color:#F7F7F7;

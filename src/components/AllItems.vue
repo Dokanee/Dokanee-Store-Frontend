@@ -20,19 +20,19 @@
                           >
                           <template v-slot:default="props">
                               <v-main class="px-lg-5 px-md-4 py-3">
-                              <v-row :dense="$vuetify.breakpoint.xs ? true : false">
+                              <v-row align="center"  :justify="$vuetify.breakpoint.xs ? 'center' : 'left'" dense>
                               <v-col
                                   v-for="item in props.items"
                                   :key="item.productName"
-                                  cols="6"
-                                  sm="4"
-                                  md="2"
-                                  lg="3"
+                                  align-self="start"
+                                  style="max-width:200px"
+                                  class="my-0.8"
+                                  
                               >
                                   <v-hover
                                     v-slot="{ hover }"
                                   >
-                                  <v-card class="item-selection" :elevation="hover ? 3 : 0" style="cursor:pointer" flat>
+                                  <v-card justify="left" :max-width="$vuetify.breakpoint.xs ? '180' : '190'" class="col pa-0 item-selection" :elevation="hover ? 3 : 0" style="cursor:pointer" flat>
                                   <v-container v-ripple @click="productInfo = true ,pInfo(item)">
                                       <v-img
                                     contain
@@ -45,39 +45,39 @@
                                           <v-flex xs12 align-end flexbox>
                                           <v-chip
                                           color="#ea5455"
-                                          style="color:white;font-size:12px">
+                                          style="color:white;font-size:10px">
                                             New
                                           </v-chip>    
                                           </v-flex>
                                         </v-layout>
                                       </v-container>
                                     </v-img>
-                                    <v-card-title style="height:60px;font-size:14px;letter-spacing: 1px;line-height: normal;">
-                                    <div align="center" justify="center">
-                                        {{item.productName}}
-                                    </div>
+                                    <v-card-title class="my-0 py-0" style="height:60px;font-size:14px;letter-spacing:0.5px;line-height: normal;">
+                                    <v-row align="center" justify="center">
+                                       <b> {{item.productName}} </b>
+                                    </v-row>
                                   </v-card-title>  
                                   <v-card-content>
-                                      <v-list-item-content align="center" class="py-2" style="display:block;font-sbackground-color:white;ize:12px">
+                                      <v-list-item-content align="center" class="py-0" style="display:block;font-sbackground-color:white;ize:12px">
                                           <v-chip
                                             :color="getColor(item.inStock)"
-                                            style="font-size:13px; margin:5px"
+                                            style="font-size:10px;"
                                             dark
+                                            class="mx-1"
                                             outlined
                                           >
                                             {{getStockAns( item.inStock) }}
                                           </v-chip>
                                           <v-chip
                                           color="matblue"
-                                          style="color:black">
+                                          style="color:black;font-size:12px;">
                                             &#2547; {{ item.currentPrice }}
                                           </v-chip>
                                       </v-list-item-content>
                                       </v-card-content>
                                   </v-container>        
-                                    <v-divider></v-divider>
-                                    <v-card-actions :color="color"  class="ma-0 pa-0">
-                                      <v-btn color="grey lighten-2" large round depressed class="mx-auto" @click="colchange">ADD TO CART</v-btn>
+                                    <v-card-actions :color="color"  class="ma-0 pa-2">
+                                      <v-btn block color="grey lighten-2" large round depressed class="mx-auto ma-0" @click="colchange">ADD TO CART</v-btn>
                                       
                                     </v-card-actions>
                                   </v-card>
@@ -184,7 +184,7 @@
                     </v-card>
                   </v-dialog>
               </v-row>             
-  </transition>
+      </transition>
   </v-container>
 </div>
 </template>

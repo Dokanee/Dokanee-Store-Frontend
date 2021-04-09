@@ -5,14 +5,14 @@
       v-model="drawer"
       clipped
       app
-      width="280"
+      width="255"
       height="100%"
     >
     <Nav-drawer></Nav-drawer>
     
     </v-navigation-drawer>
 
-    <v-app-bar color="white" height="70" app clipped-left>
+    <v-app-bar color="white" height="65" app clipped-left>
         <v-app-bar-nav-icon class="hidden-lg-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-app-bar-logo class="text-align:left" Left align="left" v-show="storeInfo.storeImages[0] ? true : false"><v-img 
         class="mx-2"
@@ -52,8 +52,8 @@
      <v-content clipped style="background-color:#F7F7F7">
       <v-container fluid>
       <router-view></router-view>
-      {{ storeInfo.ownerImageLink }}
       </v-container>
+      <footer-1></footer-1>
     </v-content>
     <!-- <v-footer color="#E7E7E7" app>
       <span style="font-size:12px; text-align:right" class="justify-center black--text black--border">Copyright &copy; {{ new Date().getFullYear() }} | Dokanee.com.bd</span>
@@ -68,6 +68,7 @@ import SlideGroup from "@/components/SlideGroup.vue";
 import AllItems from "../components/AllItems.vue";
 import app from "../App";
 import {mapGetters, mapActions} from "vuex";
+import Footer1 from '@/components/Footer1.vue';
 
   export default {
     components: {
@@ -75,6 +76,7 @@ import {mapGetters, mapActions} from "vuex";
       "Main-slider": MainSlider,
       "Slide-Group": SlideGroup,
       "all-items": AllItems,
+      "footer-1": Footer1
     },
     data() {
       return {

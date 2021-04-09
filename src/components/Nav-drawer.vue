@@ -17,7 +17,7 @@
       
        <v-list dense>
         <v-list-item link :to="'/'+subDomain+'/category/all-products'">
-        <span style="font-size:14px" class="text-truncate"><v-icon class="mr-4" left size="20">mdi-all-inclusive</v-icon>All Products</span>
+        <span style="font-size:13px" class="text-truncate"><v-icon class="mr-4" left size="20">mdi-all-inclusive</v-icon>All Products</span>
         </v-list-item>
       <v-list-group
         v-for="item in items"
@@ -27,7 +27,7 @@
       >
         <template v-slot:activator>
           <v-list-item-content>
-            <span style="font-size:14px" class="text-truncate"><v-icon class="mr-4" left size="20">{{ item.categoryIcon ? item.categoryIcon : 'mdi-label-outline' }}</v-icon>{{ item.categoryName}}</span>
+            <span style="font-size:13px" class="text-truncate"><v-icon class="mr-4" left size="20">{{ item.categoryIcon ? item.categoryIcon : 'mdi-label-outline' }}</v-icon>{{ item.categoryName}}</span>
           </v-list-item-content>
         </template>
 
@@ -45,7 +45,7 @@
     </v-list>
     
     <div class="mb-4">.</div>
-    <v-footer absolute color="#E7E7E7" padless>
+    <v-footer absolute color="#ffffff">
       <v-col
       class="text-center"
       cols="12"

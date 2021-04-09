@@ -12,7 +12,7 @@
     
     </v-navigation-drawer>
 
-    <v-app-bar color="primary--text" height="65" app clipped-left>
+    <v-app-bar color="primary--text white" height="65" app clipped-left>
         <v-app-bar-nav-icon class="hidden-lg-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-app-bar-logo class="text-align:left" Left align="left" v-show="storeInfo.storeImages[0] ? true : false"><v-img 
         class="mx-2"
@@ -83,7 +83,6 @@ import Footer1 from '@/components/Footer1.vue';
         drawer: null,
         subDomain: this.$route.params.store,
         search: "",
-        activeColor: this.templateInfo.primayColor
       }
     },
     methods: {
@@ -91,21 +90,14 @@ import Footer1 from '@/components/Footer1.vue';
     },
     computed:
       mapGetters(["storeInfo", "templateInfo"]),
-      clr(){
-        return `color: red`;
-      },
     watch: {
       search: function (search) {
         this.$router.push('/'+this.subDomain+'/search/'+search)
-    },
-    templateInfo: function () {
-        this.activeColor = this.templateInfo.primayColor
     }
     },
     created() {
       this.getInfo();
       this.getTemplate();
-      console.log(this.templateInfo.primayColor)
     },
     // mounted() {
     //   this.$vuetify.theme.themes.light.primary = this.templateInfo.primaryColor.slice(0, -2)

@@ -87,4 +87,16 @@ export default {
 *{
   font-family: sans-serif, Helvetica, Arial !important;
 }
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1fa;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(218, 216, 216);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(141, 140, 140);
+}
 </style>

@@ -38,7 +38,7 @@
                                     contain
                                       class="white--text"
                                       height="160px"
-                                      :src="item.images[0]==null ? 'https://qa-cdn.samsung.com/etc/designs/smg/global/imgs/support-new/img-no-product.png' : item.images[0]"
+                                      :src="item.images[0]== null ? 'https://qa-cdn.samsung.com/etc/designs/smg/global/imgs/support-new/img-no-product.png' : item.images[0]"
                                     >
                                       <v-container fill-height fluid>
                                         <v-layout fill-height>
@@ -100,7 +100,8 @@
                               max-width="350"
                               justify="center"
                               class="white--text mx-auto"
-                              src="https://qa-cdn.samsung.com/etc/designs/smg/global/imgs/support-new/img-no-product.png">
+                              :src="pInfoItem.images!=undefined? pInfoItem.images[0]:''"
+                              lazy-src="https://qa-cdn.samsung.com/etc/designs/smg/global/imgs/support-new/img-no-product.png">
                               <v-container fill-height fluid>
                                 <v-layout fill-height>
                                   <v-flex xs12 align-end flexbox>
@@ -173,12 +174,14 @@
                       </v-row>
                       <v-card-actions>
                         <v-btn
-                          color="red"
-                          icon
+                          color="blue"
+                          class="cstm-close-btn"
+                          rounded
+                          width="40"
                           absolute top right
                           @click="productInfo = false"
                         >
-                          <v-icon color="white">mdi-close</v-icon>
+                          <v-icon class="inline" color="white">mdi-close</v-icon>
                         </v-btn>
                       </v-card-actions>
                     </v-card>
@@ -204,7 +207,7 @@ data () {
         rating: 3,
         sortDesc: false,
         page: 1,
-        pInfoItem: 1,
+        pInfoItem: {},
         color:"grey lighten-2",
         itemsPerPage: 10,
         sortBy: 'name',
@@ -272,6 +275,7 @@ data () {
       },
       pInfo(i){
         this.pInfoItem = i;
+        console.log(i);
       },
       cleanString(string) {
           return string.replace(/\s/g, '-').toLowerCase()
@@ -406,5 +410,9 @@ button {
 .pinfo v-col{
   padding: 0;
   margin: 0;
+}
+.cstm-close-btn{
+  border: 0px solid transparent;
+  border-radius: 50%;
 }
 </style>

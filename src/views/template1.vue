@@ -82,30 +82,21 @@ import Footer1 from '@/components/Footer1.vue';
       return {
         drawer: null,
         subDomain: this.$route.params.store,
-        search: "",
-        activeColor: this.templateInfo.primayColor
       }
     },
     methods: {
-      ...mapActions(["getStoreInfo","getTemplateInfo"])
+      ...mapActions(["getStoreInfo","getTemplateInfo"]),
     },
     computed:
       mapGetters(["storeInfo", "templateInfo"]),
-      clr(){
-        return `color: red`;
-      },
     watch: {
       search: function (search) {
         this.$router.push('/'+this.subDomain+'/search/'+search)
-    },
-    templateInfo: function () {
-        this.activeColor = this.templateInfo.primayColor
     }
     },
     created() {
       this.getInfo();
       this.getTemplate();
-      console.log(this.templateInfo.primayColor)
     },
     // mounted() {
     //   this.$vuetify.theme.themes.light.primary = this.templateInfo.primaryColor.slice(0, -2)

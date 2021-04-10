@@ -2,13 +2,13 @@
   <v-app>
     <v-app-bar absolute color="white" height="70" elevation="0" app clipped-left>
         <v-app-bar-nav-icon class="hidden-lg-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
-        <v-app-bar-logo class="text-align:left" Left align="left" v-show="storeInfo.storeImages[0] ? true : false"><v-img 
+        <v-app-bar-logo class="text-align:left" Left align="left" v-show="storeInfo.storeLogo ? true : false"><v-img 
         class="mx-2"
         max-height="60"
         max-width="200"
         contain
-        :src="storeInfo.storeImages[0]"></v-img></v-app-bar-logo>
-        <v-app-bar-title color="primary" class="large title ml-3 mr-2"  v-show="storeInfo.storeImages[0] ? false : true">{{ storeInfo.storeName }} &nbsp;</v-app-bar-title>
+        :src="storeInfo.storeLogo"></v-img></v-app-bar-logo>
+        <v-app-bar-title color="primary" class="large title ml-3 mr-2"  v-show="storeInfo.storeLogo ? false : true">{{ storeInfo.storeName }} &nbsp;</v-app-bar-title>
         <!-- <span class="font-weight-light">Store</span> -->
        <v-spacer></v-spacer>
       <v-text-field

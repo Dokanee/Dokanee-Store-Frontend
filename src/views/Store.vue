@@ -1,7 +1,7 @@
 <template>
   <div>
-   <Template-1 v-if="templateInfo.templateId==1 || templateInfo.templateId==null"></Template-1>
-   <Template-2 v-if="templateInfo.templateId==2"></Template-2>
+   <Template-1 v-if="templateInfo.templateId=='1' || templateInfo.templateId==null"></Template-1>
+   <Template-2 v-if="templateInfo.templateId=='2'"></Template-2>
   </div>
 </template>
 <script>

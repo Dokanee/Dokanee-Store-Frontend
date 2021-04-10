@@ -12,7 +12,7 @@
     
     </v-navigation-drawer>
 
-    <v-app-bar color="primary--text" height="65" app clipped-left>
+    <v-app-bar color="primary--text white" height="65" app clipped-left>
         <v-app-bar-nav-icon class="hidden-lg-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-app-bar-logo class="text-align:left" Left align="left" v-show="storeInfo.storeImages[0] ? true : false"><v-img 
         class="mx-2"
@@ -25,11 +25,11 @@
        <v-spacer></v-spacer>
       <v-text-field
         class="hidden-sm-and-down"
-        solo-inverted
-        color="gray"
+        color="primary"
         placeholder=""
+        dense
         flat
-        rounded
+        outlined
         hide-details
         label="Search Products Name You Need"
         v-model="search"
@@ -82,6 +82,7 @@ import Footer1 from '@/components/Footer1.vue';
       return {
         drawer: null,
         subDomain: this.$route.params.store,
+        search: "",
       }
     },
     methods: {

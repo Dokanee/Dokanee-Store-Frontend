@@ -7,7 +7,7 @@
     <v-card
       class="flex"
       flat
-      :color="templateInfo.primaryColor"
+      color="#BDBDBD"
     >
       <v-card-title>
         <t class="subheading">Get connected with us on social networks!</t>
@@ -29,7 +29,7 @@
       <v-row style="background-color:#ffffff;" class="black--text ma-0">
           <v-col>
             <div class="black--text ml-5">
-              <strong style="font-size:18px">{{ storeInfo.storeName }}</strong>
+              <strong class="primary--text" style="font-size:18px">{{ storeInfo.storeName }}</strong>
             </div>
             <br>
             <div style="font-size:14px" class="black--text mx-5">

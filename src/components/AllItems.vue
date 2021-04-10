@@ -100,7 +100,7 @@
                               max-width="350"
                               justify="center"
                               class="white--text mx-auto"
-                              :src="pInfoItem.images!=undefined? pInfoItem.images[0]:''"
+                              :src="pInfoItem.images!=undefined && pInfoItem.images!=''? pInfoItem.images[0]:'https://qa-cdn.samsung.com/etc/designs/smg/global/imgs/support-new/img-no-product.png'"
                               lazy-src="https://qa-cdn.samsung.com/etc/designs/smg/global/imgs/support-new/img-no-product.png">
                               <v-container fill-height fluid>
                                 <v-layout fill-height>

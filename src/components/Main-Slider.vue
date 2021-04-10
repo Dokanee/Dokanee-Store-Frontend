@@ -11,10 +11,11 @@
       :continuous="true"
       :cycle="true"
       :color="colors"
+      class="primary--text"
       :show-arrows="false"
       hide-delimiter-background
-      delimiter-icon="mdi-minus"
-      :height="$vuetify.breakpoint.xs ? 200 : 360"
+      delimiter-icon="mdi-minus-circle"
+      :height="$vuetify.breakpoint.xs ? 200 : 320"
     >
       <v-carousel-item
       style="background-color:#F7F7F7;

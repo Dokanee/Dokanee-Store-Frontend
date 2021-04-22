@@ -25,15 +25,15 @@
        <v-spacer></v-spacer>
       <v-text-field
         class="hidden-sm-and-down"
-        solo-inverted
-        color="gray"
-        placeholder=""
+        color="primary"
+        placeholder="Search Product"
+        smaller
+        dense
         flat
-        rounded
+        outlined
         hide-details
-        label="Search Products Name You Need"
         v-model="search"
-        prepend-inner-icon="mdi-shopping-search"
+        prepend-inner-icon="mdi-magnify"
       ></v-text-field>
       <v-spacer ></v-spacer>
       <v-btn class="hidden-md-and-up mr-n2" icon feb>

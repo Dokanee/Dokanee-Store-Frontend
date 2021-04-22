@@ -1,25 +1,26 @@
 <template>
   <v-app>
-    <v-app-bar color="white" height="70" app clipped-left>
+    <v-app-bar absolute color="white" height="70" elevation="0" app clipped-left>
         <v-app-bar-nav-icon class="hidden-lg-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
-        <v-app-bar-logo class="text-align:left" Left align="left" v-show="storeInfo.storeImages[0] ? true : false"><v-img 
+        <v-app-bar-logo class="text-align:left" Left align="left" v-show="storeInfo.storeLogo ? true : false"><v-img 
         class="mx-2"
         max-height="60"
         max-width="200"
         contain
-        :src="storeInfo.storeImages[0]"></v-img></v-app-bar-logo>
-        <v-app-bar-title color="primary" class="large title ml-3 mr-2"  v-show="storeInfo.storeImages[0] ? false : true">{{ storeInfo.storeName }} &nbsp;</v-app-bar-title>
+        :src="storeInfo.storeLogo"></v-img></v-app-bar-logo>
+        <v-app-bar-title color="primary" class="large title ml-3 mr-2"  v-show="storeInfo.storeLogo ? false : true">{{ storeInfo.storeName }} &nbsp;</v-app-bar-title>
         <!-- <span class="font-weight-light">Store</span> -->
        <v-spacer></v-spacer>
       <v-text-field
         class="hidden-sm-and-down"
-        solo-inverted
-        color="gray"
+        color="primary"
         placeholder="Search Products Name You Need"
         flat
+        filled
         rounded
         hide-details
         label=""
+        v-model="search"
         prepend-inner-icon="mdi-shopping-search"
       ></v-text-field>
       <v-spacer ></v-spacer>
@@ -27,12 +28,12 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
       <v-btn class="ma-4" icon feb>
-        <v-icon>mdi-cart</v-icon>
+        <v-icon color="secondary">mdi-cart</v-icon>
       </v-btn>
       <v-avatar>
       <img
-        src="https://cdn.vuetifyjs.com/images/john.jpg"
-        alt="John"
+        src="https://www.w3schools.com/howto/img_avatar.png"
+        alt="profile"
       >
     </v-avatar>
     </v-app-bar>
@@ -69,7 +70,7 @@
 import Navdrawer from "@/components/Nav-drawer.vue";
 import MainSlider from "@/components/Main-Slider.vue";
 import SlideGroup from "@/components/SlideGroup.vue";
-import AllItems from "../components/AllItems.vue";
+import AllItems from "../components/AllItems2.vue";
 import app from "../App";
 import {mapGetters, mapActions} from "vuex";
 
@@ -84,6 +85,7 @@ import {mapGetters, mapActions} from "vuex";
       return {
         drawer: null,
         subDomain: this.$route.params.store,
+        search: ""
       }
     },
     methods: {
@@ -91,6 +93,11 @@ import {mapGetters, mapActions} from "vuex";
     },
     computed:
       mapGetters(["storeInfo", "templateInfo"]),
+          watch: {
+      search: function (search) {
+        this.$router.push('/'+this.subDomain+'/search/'+search)
+    }
+    },
 
     created() {
       this.getInfo();

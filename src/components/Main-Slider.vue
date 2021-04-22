@@ -27,9 +27,8 @@
       >
       </v-carousel-item>
       <v-carousel-item
-      :v-show="templateInfo.sliderImages[0]==null ? true : false"
       style="background-color:#F7F7F7;"
-      src="http://www.edamba.eu/Runtime/no-image.jpg"
+      src="https://d1rn6kzjmi8824.cloudfront.net/wp-content/uploads/2020/07/20074822/grocery-1-scaled.jpg"
       >
       </v-carousel-item>
     </v-carousel>

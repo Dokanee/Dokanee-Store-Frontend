@@ -25,14 +25,14 @@
                                   v-for="item in props.items"
                                   :key="item.productName"
                                   align-self="start"
-                                  style="max-width:200px"
+                                  style="max-width:210px"
                                   class="my-0.8"
                                   
                               >
                                   <v-hover
                                     v-slot="{ hover }"
                                   >
-                                  <v-card justify="left" :max-width="$vuetify.breakpoint.xs ? '180' : '190'" class="col pa-0 item-selection" :elevation="hover ? 3 : 0" style="cursor:pointer" flat>
+                                  <v-card justify="left" :max-width="$vuetify.breakpoint.xs ? '180' : '200'" class="col pa-0 item-selection" :elevation="hover ? 3 : 0" style="cursor:pointer" flat>
                                   <v-container v-ripple @click="productInfo = true ,pInfo(item)">
                                       <v-img
                                     contain
@@ -40,44 +40,44 @@
                                       height="160px"
                                       :src="item.images[0]== null ? 'https://qa-cdn.samsung.com/etc/designs/smg/global/imgs/support-new/img-no-product.png' : item.images[0]"
                                     >
-                                      <v-container fill-height fluid>
-                                        <v-layout fill-height>
-                                          <v-flex xs12 align-end flexbox>
                                           <v-chip
                                           color="#ea5455"
-                                          style="color:white;font-size:10px">
+                                          class="px-2 py-1"
+                                          small
+                                          style="color:white"
+                                          label>
                                             New
+                                            <v-icon size="12" class="ma-0" right>
+                                              mdi-fire
+                                            </v-icon>
                                           </v-chip>    
-                                          </v-flex>
-                                        </v-layout>
-                                      </v-container>
                                     </v-img>
                                     <v-card-title class="my-0 py-0" style="height:60px;font-size:14px;letter-spacing:0.5px;line-height: normal;">
                                     <v-row align="center" justify="center">
                                        <b> {{item.productName}} </b>
                                     </v-row>
                                   </v-card-title>  
-                                  <v-card-content>
-                                      <v-list-item-content align="center" class="py-0" style="display:block;font-sbackground-color:white;ize:12px">
-                                          <v-chip
-                                            :color="getColor(item.inStock)"
-                                            style="font-size:10px;"
-                                            dark
-                                            class="mx-1"
-                                            outlined
-                                          >
-                                            {{getStockAns( item.inStock) }}
-                                          </v-chip>
-                                          <v-chip
-                                          color="matblue"
-                                          style="color:black;font-size:12px;">
-                                            &#2547; {{ item.currentPrice }}
-                                          </v-chip>
-                                      </v-list-item-content>
-                                      </v-card-content>
+                                      <div class="py-0" style="display:block;text-align:center;font-sbackground-color:white;font-size:14px">
+                                          <v-row align="center" dense justify="center" cols="6">
+                                            <v-col>
+                                            <v-text :class="item.currentPrice ? 'text-decoration-line-through' : ''">৳ {{item.regularPrice}}</v-text>
+                                            </v-col>
+                                            <v-col v-if="item.currentPrice">
+                                            <v-text class="primary--text" v-if="item.currentPrice" ><b>৳ {{item.currentPrice}}</b></v-text>
+                                            </v-col>
+                                          </v-row>
+                                      </div>
                                   </v-container>        
                                     <v-card-actions :color="color"  class="ma-0 pa-2">
-                                      <v-btn block color="grey lighten-2" large round depressed class="mx-auto ma-0" @click="colchange">ADD TO CART</v-btn>
+              <v-btn
+                :class="fav ? 'red--text' : ''"
+                icon
+                @click="fav = !fav"
+              >
+              <v-icon>mdi-heart</v-icon>
+              </v-btn>
+
+              <v-btn :disabled="!item.inStock" style="font-size:12px;" color="grey lighten-2" large round depressed class="mx-auto px-3 ma-0" @click="addToCart(item)"><b>{{ item.inStock ? 'add to cart' : 'Stock Out' }}</b></v-btn>
                                       
                                     </v-card-actions>
                                   </v-card>
@@ -174,14 +174,13 @@
                       </v-row>
                       <v-card-actions>
                         <v-btn
-                          color="blue"
-                          class="cstm-close-btn"
-                          rounded
+                          color="red"
+                          icon
                           width="40"
-                          absolute top right
+                          class="close"
                           @click="productInfo = false"
                         >
-                          <v-icon class="inline" color="white">mdi-close</v-icon>
+                          <v-icon>mdi-close</v-icon>
                         </v-btn>
                       </v-card-actions>
                     </v-card>
@@ -263,9 +262,11 @@ data () {
         if (c == false) return 'Stock Out'
         else return 'Available'
       },
-      addToCart(a,b,c) {
-        this.selingCart.push({ilink: a,name: b, price: c,quantity: 1});
-        console.log(this.selingCart);
+      addToCart(item) {
+        this.$store.dispatch('addProductToCart', {
+          product: item,
+          quantity: 1
+        })
       },
       deleteFromCart(i){
         this.selingCart.splice(i, 1);
@@ -359,39 +360,10 @@ data () {
 }
 </script>
 <style scoped>
-button {
-    display: inline-block;
-    padding: 10px;
-    margin: 10px;
-    cursor: pointer;
-    color: white;
-    background-color: teal;
-    font-size: small;
-    justify-content: center;
-    margin: 5px;
-}
 .item-selection {
   border: 1px solid #ddd;
 }
-
-.cart-item{
-  border: 1px solid #ddd;
-}
-.quantity {
-  width: 50px;
-  height: 30px;
-  border: 1px solid #ddd;
-  padding: 3px;
-}
-.trow {
- box-sizing: border-box;
- overflow: hidden;
- margin: auto;
- position: relative;
-}
-.close{
-  background-color: thistle;
-  color: red;  
+.close{ 
   position: absolute;
   right: 5px;
   top: 5px;

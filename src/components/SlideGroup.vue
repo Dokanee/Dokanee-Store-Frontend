@@ -12,7 +12,7 @@
       show-arrows
     >
       <v-slide-item
-        v-for="n in 15"
+        v-for="n in cupon"
         :key="n"
         v-slot="{ active, toggle }"
       >
@@ -29,11 +29,8 @@
             justify="center"
           >
             <v-scale-transition>
-              <v-icon
-                v-if="active"
-                color="white"
-                size="48"
-              ></v-icon>
+              <v-img :src="n">
+             </v-img>
             </v-scale-transition>
           </v-row>
         </v-card>
@@ -45,6 +42,17 @@
   export default {
     data: () => ({
       model: [],
+      cupon: [
+        "https://d1rn6kzjmi8824.cloudfront.net/wp-content/uploads/sites/2/2020/08/18150759/Fast-Delivery.png",
+        "https://d1rn6kzjmi8824.cloudfront.net/wp-content/uploads/sites/2/2020/08/18150758/Cusatom-Order.png",
+        "https://d1rn6kzjmi8824.cloudfront.net/wp-content/uploads/sites/2/2020/08/18150757/Coupon.png",
+        "https://d1rn6kzjmi8824.cloudfront.net/wp-content/uploads/sites/2/2020/08/18150759/Fast-Delivery.png",
+        "https://d1rn6kzjmi8824.cloudfront.net/wp-content/uploads/sites/2/2020/08/18150758/Cusatom-Order.png",
+        "https://d1rn6kzjmi8824.cloudfront.net/wp-content/uploads/sites/2/2020/08/18150757/Coupon.png",
+        "https://d1rn6kzjmi8824.cloudfront.net/wp-content/uploads/sites/2/2020/08/18150759/Fast-Delivery.png",
+        "https://d1rn6kzjmi8824.cloudfront.net/wp-content/uploads/sites/2/2020/08/18150758/Cusatom-Order.png",
+        "https://d1rn6kzjmi8824.cloudfront.net/wp-content/uploads/sites/2/2020/08/18150757/Coupon.png",
+      ]
     }),
   }
 </script>

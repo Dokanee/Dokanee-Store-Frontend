@@ -47,11 +47,29 @@
             </div>
           </v-col>
           <v-col>
-2
+            <v-row class="ma-4">
+              <div>
+                <b>ABOUT</b> <br>
+                <a href="#">About Owner</a> <br>
+                <a href="#">About Shop</a> <br>
+                <a href="#">Contact</a> <br>
+              </div>
+              <v-spacer></v-spacer>
+              <div>
+                <b>LEGEL</b> <br>
+                <a href="#">Privacy policy</a> <br>
+                <a href="#">Terms of Use</a> <br>
+              </div>
+            </v-row>
+          </v-col>
+          <v-col>
+            <v-row>
+              <v-img width="200" class="ma-4" src="@/assets/FooterImage/SSL-Commerz-Pay-With-logo-1.png"></v-img>
+            </v-row>
           </v-col>
         </v-row>
-      <v-card-text style="background-color:#f7f7f7" class="py-2 black--text text-center">
-        {{ new Date().getFullYear() }} — <strong>Dokanee Shopping</strong>
+      <v-card-text style="background-color:#f7f7f7" class="py-2 black--text text-center"> Copyright ©
+        {{ new Date().getFullYear() }} | <strong>{{ storeInfo.storeName }}</strong>
       </v-card-text>
     </v-card>
   </v-footer>
@@ -80,3 +98,8 @@ import {mapGetters, mapActions} from "vuex";
     },
   }
 </script>
+<style>
+a {
+  text-decoration: none;
+}
+</style>
